@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>形式语言与自动机 | MXY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="上下文无关文法设计上下文无关文法 {a^n^b^n^c^m^d^m^|n≥1,m≥1}∩{a^n^b^m^c^m^d^n^|n≥1,m≥1} S-&amp;gt;AB|TT-&amp;gt;aTd|aCdA-&amp;gt;aAb|abB-&amp;gt;cBd|cdC-&amp;gt;bCc|bc  {a^n^b^m^|n,m≥0∧n≥m} S-&amp;gt;A|BA-&amp;gt;aA|aCB-&amp;gt;Bb|CbC-&amp;gt;aCb|ε  {a^">
+<meta property="og:type" content="article">
+<meta property="og:title" content="形式语言与自动机">
+<meta property="og:url" content="http://boltma.github.io/2019/03/24/形式语言与自动机/index.html">
+<meta property="og:site_name" content="MXY">
+<meta property="og:description" content="上下文无关文法设计上下文无关文法 {a^n^b^n^c^m^d^m^|n≥1,m≥1}∩{a^n^b^m^c^m^d^n^|n≥1,m≥1} S-&amp;gt;AB|TT-&amp;gt;aTd|aCdA-&amp;gt;aAb|abB-&amp;gt;cBd|cdC-&amp;gt;bCc|bc  {a^n^b^m^|n,m≥0∧n≥m} S-&amp;gt;A|BA-&amp;gt;aA|aCB-&amp;gt;Bb|CbC-&amp;gt;aCb|ε  {a^">
+<meta property="og:locale" content="zh_cn">
+<meta property="og:updated_time" content="2019-03-24T01:54:29.963Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="形式语言与自动机">
+<meta name="twitter:description" content="上下文无关文法设计上下文无关文法 {a^n^b^n^c^m^d^m^|n≥1,m≥1}∩{a^n^b^m^c^m^d^n^|n≥1,m≥1} S-&amp;gt;AB|TT-&amp;gt;aTd|aCdA-&amp;gt;aAb|abB-&amp;gt;cBd|cdC-&amp;gt;bCc|bc  {a^n^b^m^|n,m≥0∧n≥m} S-&amp;gt;A|BA-&amp;gt;aA|aCB-&amp;gt;Bb|CbC-&amp;gt;aCb|ε  {a^">
+    
+        <link rel="alternate" type="application/atom+xml" title="MXY" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">mxy</h5>
+          <a href="mailto:maxy18@mails.tsinghua.edu.cn" title="maxy18@mails.tsinghua.edu.cn" class="mail">maxy18@mails.tsinghua.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/boltma" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">形式语言与自动机</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">形式语言与自动机</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-24T01:54:17.000Z" itemprop="datePublished" class="page-time">
+  2019-03-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#上下文无关文法"><span class="post-toc-number">1.</span> <span class="post-toc-text">上下文无关文法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计上下文无关文法"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">设计上下文无关文法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正则语言"><span class="post-toc-number">2.</span> <span class="post-toc-text">正则语言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计正则语言"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">设计正则语言</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-形式语言与自动机" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">形式语言与自动机</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-24 09:54:17" datetime="2019-03-24T01:54:17.000Z" itemprop="datePublished">2019-03-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="上下文无关文法"><a href="#上下文无关文法" class="headerlink" title="上下文无关文法"></a>上下文无关文法</h1><h2 id="设计上下文无关文法"><a href="#设计上下文无关文法" class="headerlink" title="设计上下文无关文法"></a>设计上下文无关文法</h2><ol>
+<li><p>{a^n^b^n^c^m^d^m^|n≥1,m≥1}∩{a^n^b^m^c^m^d^n^|n≥1,m≥1}</p>
+<p>S-&gt;AB|T<br>T-&gt;aTd|aCd<br>A-&gt;aAb|ab<br>B-&gt;cBd|cd<br>C-&gt;bCc|bc</p>
+</li>
+<li><p>{a^n^b^m^|n,m≥0∧n≥m}</p>
+<p>S-&gt;A|B<br>A-&gt;aA|aC<br>B-&gt;Bb|Cb<br>C-&gt;aCb|ε</p>
+</li>
+<li><p>{a^n^b^m^|n≥0,m≥0,3n≥m≥2n}</p>
+<p>S-&gt;aSbb|aSbbb|ε</p>
+</li>
+<li><p>{w|w∈{a,b}^*^,w中a和b的数目不同}</p>
+<p>S-&gt;A|B<br>A-&gt;AA|Ta<br>B-&gt;BB|Tb<br>T-&gt;aTbT|bTaT|ε<br>注意此处T生成a与b数目相同的字符串</p>
+</li>
+<li><p>{w|w∈{a,b}^*^,且w中a与b的数目相差为2}</p>
+<p>S-&gt;TaTaT|TbTbT<br>T-&gt;aTbT|bTaT|ε</p>
+</li>
+</ol>
+<h1 id="正则语言"><a href="#正则语言" class="headerlink" title="正则语言"></a>正则语言</h1><h2 id="设计正则语言"><a href="#设计正则语言" class="headerlink" title="设计正则语言"></a>设计正则语言</h2><ol>
+<li><p>{xwx^R^|x,w∈(a+b)+},其中(a+b)^+^=(a+b)(a+b)^*^,x^R^为x的反向(即反转)</p>
+<p>a(a+b)(a+b)^<em>^a+b(a+b)(a+b)^</em>^(a+b)</p>
+</li>
+<li><p>{w|w∈{a,b}^<em>^∧∃x,y(x,y∈{a,b}^</em>^∧w=xy∧|y|=3∧y=y^R^)}</p>
+<p>(a+b)^*^(aaa+aba+bab+bbb)</p>
+</li>
+<li><p>{w∈{a,b}^*^|w中既不包含子串aa,也不包含子串bb}</p>
+<p>(ε+b)(ab)^*^(ε+a)</p>
+</li>
+<li><p>{a^n^b^m^|n,m≥0且n+m为偶数}</p>
+<p>(aa)^<em>^(bb)^</em>^+(aa)^<em>^a(bb)^</em>^b</p>
+</li>
+<li><p>{w|w∈{a,b}^*^,|w|≥1,且w的后20位至少有一个a}</p>
+<p>(a+b)^*^a(a+b+ε)^19^</p>
+</li>
+<li><p>{w|w∈{a,b}^*^,|w|≥1,且当w以a结尾时,它的长度为奇数}</p>
+<p>((a+b)(a+b))^<em>^a+(a+b)^</em>^b</p>
+</li>
+<li><p>{w|w∈{a,b}^*^,|w|≥2,且w的前5位至少有一个子串aa}</p>
+<p>(a+b+ε)^3^aa(a+b)^*^</p>
+</li>
+<li><p>{w|w∈{a,b}^*^,|w|≥2,且w的第2位至第5位至少有一个a}</p>
+<p>(a+b)(a+b+ε)^3^a(a+b)^*^</p>
+</li>
+<li><p>{w|w∈{0,1}^*^,w至少含有3个1,且倒数第3位为1}</p>
+<p>(0+1)^<em>^1(0+1)^</em>^1(0+1)^<em>^100+(0+1)^</em>^1(0+1)^<em>^1(01+10)+(0+1)^</em>^111</p>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-03-24T01:54:29.963Z" itemprop="dateUpdated">2019-03-24 09:54:29</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/03/24/形式语言与自动机/" target="_blank" rel="external">http://boltma.github.io/2019/03/24/形式语言与自动机/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://boltma.github.io">
+            <img src="/img/avatar.jpg" alt="mxy">
+            mxy
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://boltma.github.io/2019/03/24/形式语言与自动机/&title=《形式语言与自动机》 — MXY&pic=http://boltma.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://boltma.github.io/2019/03/24/形式语言与自动机/&title=《形式语言与自动机》 — MXY&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://boltma.github.io/2019/03/24/形式语言与自动机/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《形式语言与自动机》 — MXY&url=http://boltma.github.io/2019/03/24/形式语言与自动机/&via=http://boltma.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://boltma.github.io/2019/03/24/形式语言与自动机/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/24/Hello-world/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hello, world!</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>mxy &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://boltma.github.io/2019/03/24/形式语言与自动机/&title=《形式语言与自动机》 — MXY&pic=http://boltma.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://boltma.github.io/2019/03/24/形式语言与自动机/&title=《形式语言与自动机》 — MXY&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://boltma.github.io/2019/03/24/形式语言与自动机/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《形式语言与自动机》 — MXY&url=http://boltma.github.io/2019/03/24/形式语言与自动机/&via=http://boltma.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://boltma.github.io/2019/03/24/形式语言与自动机/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://boltma.github.io/2019/03/24/形式语言与自动机/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'QAQ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
