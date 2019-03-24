@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2019-03-23T14:56:41.221Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://boltma.github.io/"/>
+  <updated>2019-03-24T01:54:29.963Z</updated>
+  <id>http://boltma.github.io/</id>
   
   <author>
     <name>mxy</name>
@@ -17,19 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2019/03/23/hello-world/"/>
-    <id>http://yoursite.com/2019/03/23/hello-world/</id>
-    <published>2019-03-23T14:56:41.221Z</published>
-    <updated>2019-03-23T14:56:41.221Z</updated>
+    <title>形式语言与自动机</title>
+    <link href="http://boltma.github.io/2019/03/24/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/"/>
+    <id>http://boltma.github.io/2019/03/24/形式语言与自动机/</id>
+    <published>2019-03-24T01:54:17.000Z</published>
+    <updated>2019-03-24T01:54:29.963Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="上下文无关文法"><a href="#上下文无关文法" class="headerlink" title="上下文无关文法"></a>上下文无关文法</h1><h2 id="设计上下文无关文法"><a href="#设计上下文无关文法" class="headerlink" title="设计上下文无关文法"></a>设计上下文无关文法</h2><ol><li><p>{a^n^b^n^c^m^d^m^|n≥1,m≥1}∩{a^n^b^m^c^m^d^n^|n≥1,m≥1}</p><p>S-&gt;AB|T<br>T-&gt;aTd|aCd<br>A-&gt;aAb|ab<br>B-&gt;cBd|cd<br>C-&gt;bCc|bc</p></li><li><p>{a^n^b^m^|n,m≥0∧n≥m}</p><p>S-&gt;A|B<br>A-&gt;aA|aC<br>B-&gt;Bb|Cb<br>C-&gt;aCb|ε</p></li><li><p>{a^n^b^m^|n≥0,m≥0,3n≥m≥2n}</p><p>S-&gt;aSbb|aSbbb|ε</p></li><li><p>{w|w∈{a,b}^*^,w中a和b的数目不同}</p><p>S-&gt;A|B<br>A-&gt;AA|Ta<br>B-&gt;BB|Tb<br>T-&gt;aTbT|bTaT|ε<br>注意此处T生成a与b数目相同的字符串</p></li><li><p>{w|w∈{a,b}^*^,且w中a与b的数目相差为2}</p><p>S-&gt;TaTaT|TbTbT<br>T-&gt;aTbT|bTaT|ε</p></li></ol><h1 id="正则语言"><a href="#正则语言" class="headerlink" title="正则语言"></a>正则语言</h1><h2 id="设计正则语言"><a href="#设计正则语言" class="headerlink" title="设计正则语言"></a>设计正则语言</h2><ol><li><p>{xwx^R^|x,w∈(a+b)+},其中(a+b)^+^=(a+b)(a+b)^*^,x^R^为x的反向(即反转)</p><p>a(a+b)(a+b)^<em>^a+b(a+b)(a+b)^</em>^(a+b)</p></li><li><p>{w|w∈{a,b}^<em>^∧∃x,y(x,y∈{a,b}^</em>^∧w=xy∧|y|=3∧y=y^R^)}</p><p>(a+b)^*^(aaa+aba+bab+bbb)</p></li><li><p>{w∈{a,b}^*^|w中既不包含子串aa,也不包含子串bb}</p><p>(ε+b)(ab)^*^(ε+a)</p></li><li><p>{a^n^b^m^|n,m≥0且n+m为偶数}</p><p>(aa)^<em>^(bb)^</em>^+(aa)^<em>^a(bb)^</em>^b</p></li><li><p>{w|w∈{a,b}^*^,|w|≥1,且w的后20位至少有一个a}</p><p>(a+b)^*^a(a+b+ε)^19^</p></li><li><p>{w|w∈{a,b}^*^,|w|≥1,且当w以a结尾时,它的长度为奇数}</p><p>((a+b)(a+b))^<em>^a+(a+b)^</em>^b</p></li><li><p>{w|w∈{a,b}^*^,|w|≥2,且w的前5位至少有一个子串aa}</p><p>(a+b+ε)^3^aa(a+b)^*^</p></li><li><p>{w|w∈{a,b}^*^,|w|≥2,且w的第2位至第5位至少有一个a}</p><p>(a+b)(a+b+ε)^3^a(a+b)^*^</p></li><li><p>{w|w∈{0,1}^*^,w至少含有3个1,且倒数第3位为1}</p><p>(0+1)^<em>^1(0+1)^</em>^1(0+1)^<em>^100+(0+1)^</em>^1(0+1)^<em>^1(01+10)+(0+1)^</em>^111</p></li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+        &lt;h1 id=&quot;上下文无关文法&quot;&gt;&lt;a href=&quot;#上下文无关文法&quot; class=&quot;headerlink&quot; title=&quot;上下文无关文法&quot;&gt;&lt;/a&gt;上下文无关文法&lt;/h1&gt;&lt;h2 id=&quot;设计上下文无关文法&quot;&gt;&lt;a href=&quot;#设计上下文无关文法&quot; class=&quot;header
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello, world!</title>
+    <link href="http://boltma.github.io/2019/03/24/Hello-world/"/>
+    <id>http://boltma.github.io/2019/03/24/Hello-world/</id>
+    <published>2019-03-24T01:53:12.000Z</published>
+    <updated>2019-03-24T01:54:05.691Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里会记录一些学习笔记，或者灌水，请多多指教！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这里会记录一些学习笔记，或者灌水，请多多指教！&lt;/p&gt;
+
       
     
     </summary>
