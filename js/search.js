@@ -121,11 +121,7 @@
     searchIco.addEventListener(even, function () {
         searchWrap.classList.toggle('in');
         keyInput.value = '';
-<<<<<<< HEAD
         searchWrap.classList.contains('in') ? keyInput.focus() : keyInput.blur();
-=======
-        keyInput.focus();
->>>>>>> 4b10dd3e24094a632fea6862b3cbfdae7e165bf1
     });
 
     back.addEventListener(even, function () {
