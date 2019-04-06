@@ -249,17 +249,17 @@
 <p>|       | a    | b    |<br>| —– | —- | —- |<br>| -&gt;*q0 | q1   | q2   |<br>| q1    | q3   | q0   |<br>| q2    | q0   | q3   |<br>| q3    | q3   | q3   |</p>
 </li>
 <li><p>{w∈{a,b}<sup>*</sup>|w包含子串ab，但不包含子串bb}</p>
-<p><img src="dfa-1.png" alt="dfa-1"></p>
+<p><img src="/2019/03/24/形式语言与自动机/dfa-1.png" alt="dfa-1"></p>
 <p>相应的NFA有：</p>
-<p><img src="nfa-1.png" alt="nfa-1"></p>
-<h2 id="DFA的最小化"><a href="#DFA的最小化" class="headerlink" title="DFA的最小化"></a>DFA的最小化</h2><p><img src="dfa-2.png" alt="dfa-2"></p>
+<p><img src="/2019/03/24/形式语言与自动机/nfa-1.png" alt="nfa-1"></p>
+<h2 id="DFA的最小化"><a href="#DFA的最小化" class="headerlink" title="DFA的最小化"></a>DFA的最小化</h2><p><img src="/2019/03/24/形式语言与自动机/dfa-2.png" alt="dfa-2"></p>
 <p>构造与该DFA等价的最小化的DFA</p>
 <p>填表算法第一步区分1，3，6与2，4，5</p>
 <p>第二步区分2与4，5（输入字符b）</p>
 <p>第三步区分1，3与6（输入字符a）</p>
 <p>故最终等价类有{1, 3}, {2}, {4, 5}, {6}</p>
 <p>最小化的DFA是</p>
-<p><img src="dfa-3.png" alt="dfa-3"></p>
+<p><img src="/2019/03/24/形式语言与自动机/dfa-3.png" alt="dfa-3"></p>
 </li>
 </ol>
 
