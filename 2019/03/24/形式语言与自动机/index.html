@@ -9,7 +9,7 @@
 
 
 
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     
     
     
@@ -44,13 +44,13 @@
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
-    <!-- custom head -->
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
 </head>
 
 <body>
-    <div id="loading" class="active"></div>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
     <aside id="menu" class="hide">
   <div class="inner flex-row-vertical">
@@ -212,22 +212,22 @@
 </ol>
 <h1 id="正则语言"><a href="#正则语言" class="headerlink" title="正则语言"></a>正则语言</h1><h2 id="设计正则语言"><a href="#设计正则语言" class="headerlink" title="设计正则语言"></a>设计正则语言</h2><ol>
 <li><p>{xwx<sup>R</sup>|x,w∈(a+b)+},其中(a+b)<sup>+</sup>=(a+b)(a+b)<sup>*</sup>,x<sup>R</sup>为x的反向(即反转)</p>
-<p>a(a+b)(a+b)<sup><em></em></sup>a+b(a+b)(a+b)<sup></sup>(a+b)</p>
+<p>a(a+b)(a+b)<sup>*</sup>a+b(a+b)(a+b)<sup>*</sup>(a+b)</p>
 </li>
-<li><p>{w|w∈{a,b}<sup><em></em></sup>∧∃x,y(x,y∈{a,b}<sup></sup>∧w=xy∧|y|=3∧y=y<sup>R</sup>)}</p>
+<li><p>{w|w∈{a,b}<sup>*</sup>∧∃x,y(x,y∈{a,b}<sup>*</sup>∧w=xy∧|y|=3∧y=y<sup>R</sup>)}</p>
 <p>(a+b)<sup>*</sup>(aaa+aba+bab+bbb)</p>
 </li>
 <li><p>{w∈{a,b}<sup>*</sup>|w中既不包含子串aa,也不包含子串bb}</p>
 <p>(ε+b)(ab)<sup>*</sup>(ε+a)</p>
 </li>
 <li><p>{a<sup>n</sup>b<sup>m</sup>|n,m≥0且n+m为偶数}</p>
-<p>(aa)<sup><em></em></sup>(bb)<sup></sup>+(aa)<sup><em></em></sup>a(bb)<sup></sup>b</p>
+<p>(aa)<sup>*</sup>(bb)<sup>*</sup>+(aa)<sup>*</sup>a(bb)<sup>*</sup>b</p>
 </li>
 <li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥1,且w的后20位至少有一个a}</p>
 <p>(a+b)<sup>*</sup>a(a+b+ε)<sup>19</sup></p>
 </li>
 <li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥1,且当w以a结尾时,它的长度为奇数}</p>
-<p>((a+b)(a+b))<sup><em></em></sup>a+(a+b)<sup></sup>b</p>
+<p>((a+b)(a+b))<sup>*</sup>a+(a+b)<sup>*</sup>b</p>
 </li>
 <li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥2,且w的前5位至少有一个子串aa}</p>
 <p>(a+b+ε)<sup>3</sup>aa(a+b)<sup>*</sup></p>
@@ -236,13 +236,14 @@
 <p>(a+b)(a+b+ε)<sup>3</sup>a(a+b)<sup>*</sup></p>
 </li>
 <li><p>{w|w∈{0,1}<sup>*</sup>,w至少含有3个1,且倒数第3位为1}</p>
-<p>(0+1)<sup><em></em></sup>1(0+1)<sup></sup>1(0+1)<sup><em></em></sup>100+(0+1)<sup></sup>1(0+1)<sup><em></em></sup>1(01+10)+(0+1)<sup></sup>111</p>
+<p>(0+1)<sup>*</sup>1(0+1)<sup>*</sup>1(0+1)<sup>*</sup>100+(0+1)<sup>*</sup>1(0+1)<sup>*</sup>1(01+10)+(0+1)<sup>*</sup>111</p>
 </li>
 </ol>
 <h1 id="有限自动机"><a href="#有限自动机" class="headerlink" title="有限自动机"></a>有限自动机</h1><p>安利一个用来画自动机的app：<a href="http://madebyevan.com/fsm/" target="_blank" rel="noopener">http://madebyevan.com/fsm/</a></p>
 <h2 id="设计DFA"><a href="#设计DFA" class="headerlink" title="设计DFA"></a>设计DFA</h2><ol>
 <li>长度至少为2且头两个字符不相同的0,1串构成的集合</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -279,9 +280,11 @@
 </tr>
 </tbody>
 </table>
-<ol start="2">
+</div>
+<ol>
 <li>{w∈{a,b}<sup>*</sup>|w中不包含子串aa}</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -308,9 +311,11 @@
 </tr>
 </tbody>
 </table>
-<ol start="3">
+</div>
+<ol>
 <li>{w∈{a,b}<sup>*</sup>|w中包含且仅包含奇数个子串ab}</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -342,9 +347,11 @@
 </tr>
 </tbody>
 </table>
-<ol start="4">
+</div>
+<ol>
 <li>{w∈{a,b}<sup>*</sup>|w中a的个数和b的个数之和是奇数}</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -366,9 +373,11 @@
 </tr>
 </tbody>
 </table>
-<ol start="5">
+</div>
+<ol>
 <li>{w∈{a,b}<sup>*</sup>|w含相同个数的a和b,且w的每个前缀中a和b个数之差不超过1}</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -400,7 +409,8 @@
 </tr>
 </tbody>
 </table>
-<ol start="6">
+</div>
+<ol>
 <li><p>{w∈{a,b}<sup>*</sup>|w包含子串ab，但不包含子串bb}</p>
 <p><img src="/2019/03/24/形式语言与自动机/dfa-1.png" alt="dfa-1"></p>
 <p>相应的NFA有：</p>
@@ -702,7 +712,24 @@ MathJax.Hub.Queue(function() {
         }
     });
 })();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
