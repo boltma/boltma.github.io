@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="MXY">
 <meta property="og:description" content="Fisher InformationFisher Information（费希尔信息）是用以衡量观测数据所蕴含的数据量，具体说来是指观测所得的随机变量$X$携带的关于未知参数$\theta$的信息量，其中$X$的概率分布依赖于$\theta$，通常记作${\mathcal {I}}_{X}(\theta)$。 对于概率分布$f(X;\theta)$（满足$f(x;\theta )\geq0, \i">
 <meta property="og:locale" content="zh_cn">
-<meta property="og:updated_time" content="2019-05-02T15:02:08.732Z">
+<meta property="og:updated_time" content="2019-05-02T15:34:24.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fisher Information">
 <meta name="twitter:description" content="Fisher InformationFisher Information（费希尔信息）是用以衡量观测数据所蕴含的数据量，具体说来是指观测所得的随机变量$X$携带的关于未知参数$\theta$的信息量，其中$X$的概率分布依赖于$\theta$，通常记作${\mathcal {I}}_{X}(\theta)$。 对于概率分布$f(X;\theta)$（满足$f(x;\theta )\geq0, \i">
@@ -118,7 +118,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -182,7 +182,7 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <h1 id="Fisher-Information"><a href="#Fisher-Information" class="headerlink" title="Fisher Information"></a>Fisher Information</h1><p><strong>Fisher Information（费希尔信息）</strong>是用以衡量观测数据所蕴含的数据量，具体说来是指观测所得的随机变量$X$携带的关于未知参数$\theta$的信息量，其中$X$的概率分布依赖于$\theta$，通常记作${\mathcal {I}}_{X}(\theta)$。</p>
 <p>对于概率分布$f(X;\theta)$（满足$f(x;\theta )\geq0, \int f(x;\theta )dx=1,\quad\forall\theta\in\Theta$，$\Theta$为参数集），称对数似然函数关于$\theta$的偏导$\frac {\partial }{\partial \theta }\log f(X;\theta )$为其<strong>得分</strong>（Score function），对于真实的参数$\theta$，则有此得分的期望为0：</p>
-<p>${\displaystyle {\begin{aligned}\operatorname {E} \left[\left.{\frac {\partial }{\partial \theta }}\log f(X;\theta )\right|\theta \right]&amp;=\int {\frac { {\frac {\partial }{\partial \theta }}f(x;\theta )}{f(x;\theta )}}f(x;\theta )\,dx\&amp;={\frac {\partial }{\partial \theta }}\int f(x;\theta )\,dx\&amp;={\frac {\partial }{\partial \theta }}1=0.\end{aligned}}}$</p>
+<p>${\displaystyle {\begin{aligned}\operatorname {E} \left[\left.{\frac {\partial }{\partial \theta }}\log f(X;\theta )\right|\theta \right]&amp;=\int {\frac { {\frac {\partial }{\partial \theta }}f(x;\theta )}{f(x;\theta )}}f(x;\theta )\,dx\\&amp;={\frac {\partial }{\partial \theta }}\int f(x;\theta )\,dx\\&amp;={\frac {\partial }{\partial \theta }}1=0.\end{aligned}}}$</p>
 <p>并将得分的方差定义为<strong>费希尔信息</strong>：</p>
 <p>${\displaystyle {\mathcal {I}}(\theta )=\operatorname {E} \left[\left.\left({\frac {\partial }{\partial \theta }}\log f(X;\theta )\right)<sup>{2}\right|\theta \right]=\int \left({\frac {\partial }{\partial \theta }}\log f(x;\theta )\right)</sup>{2}f(x;\theta )\,dx}$</p>
 <p>并且在密度函数具有良好性质的情况下，可以用分部积分很容易证明：</p>
@@ -197,12 +197,12 @@
 <p>例如样本均值是总体均值的无偏估计量，样本方差是总体方差的无偏估计量，而标准差是总体标准差的有偏估计量。</p>
 </blockquote>
 <p>估计无偏并不能保证误差以极大的概率是低的。例如对于正态分布${\mathcal {N}}(\theta ,1)$，设$X_1,X_2,\cdots,X_n$是抽自它的独立同分布样本。估计$\theta$时，$X_1$与$\bar {X_n}$均为无偏估计，然而显然使用更多数据会得到更好的估计，事实上也可以证明$\bar {X_n}$是最小方差无偏估计量，也即达到了<strong>克拉美罗界</strong>。</p>
-<p>达到克拉美罗界的无偏估计量优越于其他所有估计，也即$\operatorname{E}[(\hat\theta_1(X_1,X_2,\cdots,X_n)-\theta)<sup>2]\leq\operatorname{E}[(\hat\theta_2(X_1,X_2,\cdots,X_n)-\theta)</sup>2]$，若$\hat\theta_1$达到了克拉美罗界。</p>
+<p>达到克拉美罗界的无偏估计量优越于其他所有估计，也即${\displaystyle \operatorname{E}[(\hat\theta_1(X_1,X_2,\cdots,X_n)-\theta)<sup>{2}]\leq\operatorname{E}[(\hat\theta_2(X_1,X_2,\cdots,X_n)-\theta)</sup>{2}]}$，若$\hat\theta_1$达到了克拉美罗界。</p>
 <p><strong>Cramér-Rao不等式的证明：</strong></p>
 <p>设$V$是得分函数，$\hat\theta$是估计量。由Cauchy-Schwartz不等式，可得</p>
 <script type="math/tex; mode=display">\operatorname{E}_\theta[(V-\operatorname{E}_\theta V)(\hat\theta-\operatorname{E}_\theta\hat\theta)] \leq \operatorname{E}_\theta(V-\operatorname{E}_\theta V)<sup>2\operatorname{E}_\theta(\hat\theta-\operatorname{E}_\theta \hat\theta)</sup>2</script><p>由于$\hat\theta$是无偏估计，所以对于任意$\theta$均有$\operatorname{E}_\theta \hat\theta=\theta$，同时得分函数的期望也为零（见上），并且结合费希尔信息的定义（${\mathcal {I}}(\theta )=\operatorname {E}[V^2]$），代入上式有$\operatorname {E}_\theta[V\hat\theta]\leq\mathcal{I}(\theta)\operatorname{var}(\hat\theta).$</p>
 <p>而</p>
-<p>$\begin{aligned} \operatorname {E}_\theta[V\hat\theta]&amp;=\int\frac{\frac{\partial}{\partial\theta}f(x;\theta)}{f(x;\theta)}\hat\theta(x)f(x;\theta)dx \ &amp;= \int \frac{\partial}{\partial\theta} f(x;\theta)\hat\theta(x)dx \ &amp;= \frac{\partial}{\partial\theta}\int f(x;\theta)\hat\theta(x)dx \ &amp;= \frac{\partial}{\partial\theta} \operatorname{E}_\theta[\hat\theta] \ &amp;= \frac{\partial}{\partial\theta}\theta = 1\end{aligned}$</p>
+<p>${\displaystyle \begin{aligned} \operatorname {E}_\theta[V\hat\theta]&amp;=\int\frac{\frac{\partial}{\partial\theta}f(x;\theta)}{f(x;\theta)}\hat\theta(x)f(x;\theta)dx \ &amp;= \int \frac{\partial}{\partial\theta} f(x;\theta)\hat\theta(x)dx \ &amp;= \frac{\partial}{\partial\theta}\int f(x;\theta)\hat\theta(x)dx \ &amp;= \frac{\partial}{\partial\theta} \operatorname{E}_\theta[\hat\theta] \ &amp;= \frac{\partial}{\partial\theta}\theta = 1\end{aligned}}$</p>
 <p>（这里能交换积分与微分号是假定密度函数具有良好性质，上同）</p>
 <p>代入即得到Cramér-Rao不等式。                                                                                                                                $\square$ </p>
 <p>以相同的证明方式可以得到对于任意估计量有$\operatorname {var} \left({\hat {\theta }}\right)\geq {\frac {[1+b’(\theta )]^{2}}{\mathcal{I}(\theta )}}$，此处$b(\theta)=\operatorname{E}_\theta[\hat\theta]-\theta.$</p>
@@ -216,7 +216,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-05-02T15:02:08.732Z" itemprop="dateUpdated">2019-05-02 23:02:08</time>
+    最後更新時間：<time datetime="2019-05-02T15:34:24.165Z" itemprop="dateUpdated">2019-05-02 23:34:24</time>
 </span><br>
 
 
@@ -350,7 +350,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>本部落格係採用<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -488,26 +488,24 @@ MathJax.Hub.Queue(function() {
         }
     });
 })();
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+
+
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
