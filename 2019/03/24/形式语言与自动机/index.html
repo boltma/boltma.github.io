@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://boltma.github.io/2019/03/24/形式语言与自动机/nfa-1.png">
 <meta property="og:image" content="http://boltma.github.io/2019/03/24/形式语言与自动机/dfa-2.png">
 <meta property="og:image" content="http://boltma.github.io/2019/03/24/形式语言与自动机/dfa-3.png">
-<meta property="og:updated_time" content="2019-04-06T08:17:23.151Z">
+<meta property="og:updated_time" content="2019-04-24T10:45:41.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="形式语言与自动机">
 <meta name="twitter:description" content="上下文无关文法设计上下文无关文法 {anbncmdm|n≥1,m≥1}∩{anbmcmdn|n≥1,m≥1} S-&amp;gt;AB|TT-&amp;gt;aTd|aCdA-&amp;gt;aAb|abB-&amp;gt;cBd|cdC-&amp;gt;bCc|bc  {anbm|n,m≥0∧n≥m} S-&amp;gt;A|BA-&amp;gt;aA|aCB-&amp;gt;Bb|CbC-&amp;gt;aCb|ε  {anbm|n≥0,m≥0,3n≥m≥2n}">
@@ -162,7 +162,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#上下文无关文法"><span class="post-toc-number">1.</span> <span class="post-toc-text">上下文无关文法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计上下文无关文法"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">设计上下文无关文法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正则语言"><span class="post-toc-number">2.</span> <span class="post-toc-text">正则语言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计正则语言"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">设计正则语言</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#有限自动机"><span class="post-toc-number">3.</span> <span class="post-toc-text">有限自动机</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计DFA"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">设计DFA</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DFA的最小化"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">DFA的最小化</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#上下文无关文法"><span class="post-toc-number">1.</span> <span class="post-toc-text">上下文无关文法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计上下文无关文法"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">设计上下文无关文法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文法和语言中的二义性"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">文法和语言中的二义性</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正则语言"><span class="post-toc-number">2.</span> <span class="post-toc-text">正则语言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计正则语言"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">设计正则语言</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#有限自动机"><span class="post-toc-number">3.</span> <span class="post-toc-text">有限自动机</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计DFA"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">设计DFA</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DFA的最小化"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">DFA的最小化</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -200,6 +200,14 @@
 </li>
 <li><p>{w|w∈{a,b}<sup>*</sup>,且w中a与b的数目相差为2}</p>
 <p>S-&gt;TaTaT|TbTbT<br>T-&gt;aTbT|bTaT|ε</p>
+</li>
+</ol>
+<h2 id="文法和语言中的二义性"><a href="#文法和语言中的二义性" class="headerlink" title="文法和语言中的二义性"></a>文法和语言中的二义性</h2><p><em>文法无二义性：语法分析树唯一，亦等价于最左推导唯一</em></p>
+<ol>
+<li><p>下面的文法生成的是具有x和y的操作数、二元运算符+、-和*的前缀表达式：</p>
+<p>E-&gt;+EE|*EE|-EE|x|y</p>
+<p>证明这个文法是无歧义的。（Hopcroft, 5.4.7(b)）</p>
+<p>提纲：可证明其最左推导是唯一的，对字符串长度归纳，同时归纳证明生成的字符串w所有非空后缀字符串中操作数个数多于运算符个数。</p>
 </li>
 </ol>
 <h1 id="正则语言"><a href="#正则语言" class="headerlink" title="正则语言"></a>正则语言</h1><h2 id="设计正则语言"><a href="#设计正则语言" class="headerlink" title="设计正则语言"></a>设计正则语言</h2><ol>
@@ -415,7 +423,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-04-06T08:17:23.151Z" itemprop="dateUpdated">2019-04-06 16:17:23</time>
+    Last updated: <time datetime="2019-04-24T10:45:41.010Z" itemprop="dateUpdated">2019-04-24 18:45:41</time>
 </span><br>
 
 
@@ -490,7 +498,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/02/Fisher-Information/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Fisher Information</h4>
+      </a>
+    </div>
   
 
   
