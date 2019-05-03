@@ -174,8 +174,8 @@
 
     
         Fisher Information
-**Fisher Information（费希尔信息）**是用以衡量观测数据所蕴含的数据量，具体说来是指观测所得的随机变量$X$携带的关于未知参数$\theta$的信息量，其中$X$的概率分布依赖于$\theta$，通常记作${\mathcal {I}}_{X}(\theta)$。
-对于概率分布$f(X;\theta)$（满足$f(x;\theta )\...
+Fisher Information（费希尔信息）是用以衡量观测数据所蕴含的数据量，具体说来是指观测所得的随机变量\(X\)携带的关于未知参数\(\theta\)的信息量，其中\(X\)的概率分布依赖于\(\theta\)，通常记作\({\mathcal {I}}_{X}(\theta)\)。
+对于概率分布\(f(X;\theta)\)（满足\(f(...
     
 
         <a href="/2019/05/02/Fisher-Information/" class="post-more waves-effect waves-button">
@@ -216,20 +216,11 @@
         上下文无关文法
 设计上下文无关文法
 
-
-{a^n^b^n^c^m^d^m^|n≥1,m≥1}∩{a^n^b^m^c^m^d^n^|n≥1,m≥1}
-S-&gt;AB|T
-T-&gt;aTd|aCd
-A-&gt;aAb|ab
-B-&gt;cBd|cd
-C-&gt;bCc|bc
-
-
-{a^n^b^m^|n,m≥0∧n≥m}
-S-&gt;A|B
-A-&gt;aA|aC
-B-&gt;Bb|Cb
-C-...
+{anbncmdm|n≥1,m≥1}∩{anbmcmdn|n≥1,m≥1}
+S-&gt;AB|T T-&gt;aTd|aCd A-&gt;aAb|ab B-&gt;cBd|cd C-&gt;bCc|bc
+{anbm|n,m≥0∧n≥m}
+S-&gt;A|B A-&gt;aA|aC B-&gt;Bb|Cb C-&gt;aCb|ε
+{anbm|...
     
 
         <a href="/2019/03/24/形式语言与自动机/" class="post-more waves-effect waves-button">
