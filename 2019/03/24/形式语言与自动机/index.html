@@ -32,7 +32,8 @@
 <meta property="og:image" content="http://boltma.github.io/2019/03/24/形式语言与自动机/nfa-1.png">
 <meta property="og:image" content="http://boltma.github.io/2019/03/24/形式语言与自动机/dfa-2.png">
 <meta property="og:image" content="http://boltma.github.io/2019/03/24/形式语言与自动机/dfa-3.png">
-<meta property="og:updated_time" content="2019-05-03T03:23:05.616Z">
+<meta property="og:image" content="http://boltma.github.io/2019/03/24/形式语言与自动机/dfa-4.png">
+<meta property="og:updated_time" content="2019-12-03T04:10:33.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="形式语言与自动机">
 <meta name="twitter:description" content="上下文无关文法 设计上下文无关文法  {anbncmdm|n≥1,m≥1}∩{anbmcmdn|n≥1,m≥1} S-&amp;gt;AB|T T-&amp;gt;aTd|aCd A-&amp;gt;aAb|ab B-&amp;gt;cBd|cd C-&amp;gt;bCc|bc {anbm|n,m≥0∧n≥m} S-&amp;gt;A|B A-&amp;gt;aA|aC B-&amp;gt;Bb|Cb C-&amp;gt;aCb|ε {anbm|n≥0">
@@ -162,7 +163,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#上下文无关文法"><span class="post-toc-number">1.</span> <span class="post-toc-text">上下文无关文法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计上下文无关文法"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">设计上下文无关文法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文法和语言中的二义性"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">文法和语言中的二义性</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正则语言"><span class="post-toc-number">2.</span> <span class="post-toc-text">正则语言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计正则语言"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">设计正则语言</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#有限自动机"><span class="post-toc-number">3.</span> <span class="post-toc-text">有限自动机</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计dfa"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">设计DFA</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#dfa的最小化"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">DFA的最小化</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#上下文无关文法"><span class="post-toc-number">1.</span> <span class="post-toc-text">上下文无关文法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计上下文无关文法"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">设计上下文无关文法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文法和语言中的二义性"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">文法和语言中的二义性</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#有限自动机"><span class="post-toc-number">2.</span> <span class="post-toc-text">有限自动机</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计dfa"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">设计DFA</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#dfa的最小化"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">DFA的最小化</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正规语言"><span class="post-toc-number">3.</span> <span class="post-toc-text">正规语言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计正规语言"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">设计正规语言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#有限状态自动机与正规表达式的关系"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">有限状态自动机与正规表达式的关系</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#thompson构造法"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">Thompson构造法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#kleene构造法状态消去法"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">Kleene构造法&amp;状态消去法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#正规语言的性质"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">正规语言的性质</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -206,28 +207,6 @@
 <p>E-&gt;+EE|*EE|-EE|x|y</p>
 <p>证明这个文法是无歧义的。（Hopcroft, 5.4.7(b)）</p>
 <p>提纲：可证明其最左推导是唯一的，对字符串长度归纳，同时归纳证明生成的字符串w所有非空后缀字符串中操作数个数多于运算符个数。</p></li>
-</ol>
-<h1 id="正则语言">正则语言</h1>
-<h2 id="设计正则语言">设计正则语言</h2>
-<ol type="1">
-<li><p>{xwx<sup>R</sup>|x,w∈(a+b)+},其中(a+b)<sup>+</sup>=(a+b)(a+b)<sup>*</sup>,x<sup>R</sup>为x的反向(即反转)</p>
-<p>a(a+b)(a+b)<sup>*</sup>a+b(a+b)(a+b)<sup>*</sup>(a+b)</p></li>
-<li><p>{w|w∈{a,b}<sup>*</sup>∧∃x,y(x,y∈{a,b}<sup>*</sup>∧w=xy∧|y|=3∧y=y<sup>R</sup>)}</p>
-<p>(a+b)<sup>*</sup>(aaa+aba+bab+bbb)</p></li>
-<li><p>{w∈{a,b}<sup>*</sup>|w中既不包含子串aa,也不包含子串bb}</p>
-<p>(ε+b)(ab)<sup>*</sup>(ε+a)</p></li>
-<li><p>{a<sup>n</sup>b<sup>m</sup>|n,m≥0且n+m为偶数}</p>
-<p>(aa)<sup>*</sup>(bb)<sup>*</sup>+(aa)<sup>*</sup>a(bb)<sup>*</sup>b</p></li>
-<li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥1,且w的后20位至少有一个a}</p>
-<p>(a+b)<sup>*</sup>a(a+b+ε)<sup>19</sup></p></li>
-<li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥1,且当w以a结尾时,它的长度为奇数}</p>
-<p>((a+b)(a+b))<sup>*</sup>a+(a+b)<sup>*</sup>b</p></li>
-<li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥2,且w的前5位至少有一个子串aa}</p>
-<p>(a+b+ε)<sup>3</sup>aa(a+b)<sup>*</sup></p></li>
-<li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥2,且w的第2位至第5位至少有一个a}</p>
-<p>(a+b)(a+b+ε)<sup>3</sup>a(a+b)<sup>*</sup></p></li>
-<li><p>{w|w∈{0,1}<sup>*</sup>,w至少含有3个1,且倒数第3位为1}</p>
-<p>(0+1)<sup>*</sup>1(0+1)<sup>*</sup>1(0+1)<sup>*</sup>100+(0+1)<sup>*</sup>1(0+1)<sup>*</sup>1(01+10)+(0+1)<sup>*</sup>111</p></li>
 </ol>
 <h1 id="有限自动机">有限自动机</h1>
 <p>安利一个用来画自动机的app：<a href="http://madebyevan.com/fsm/" class="uri" target="_blank" rel="noopener">http://madebyevan.com/fsm/</a></p>
@@ -420,6 +399,48 @@
                 </div>
                 <div class="image-caption"></div>
             </figure>
+<h1 id="正规语言">正规语言</h1>
+<h2 id="设计正规语言">设计正规语言</h2>
+<ol type="1">
+<li><p>{xwx<sup>R</sup>|x,w∈(a+b)+},其中(a+b)<sup>+</sup>=(a+b)(a+b)<sup>*</sup>,x<sup>R</sup>为x的反向(即反转)</p>
+<p>a(a+b)(a+b)<sup>*</sup>a+b(a+b)(a+b)<sup>*</sup>(a+b)</p></li>
+<li><p>{w|w∈{a,b}<sup>*</sup>∧∃x,y(x,y∈{a,b}<sup>*</sup>∧w=xy∧|y|=3∧y=y<sup>R</sup>)}</p>
+<p>(a+b)<sup>*</sup>(aaa+aba+bab+bbb)</p></li>
+<li><p>{w∈{a,b}<sup>*</sup>|w中既不包含子串aa,也不包含子串bb}</p>
+<p>(ε+b)(ab)<sup>*</sup>(ε+a)</p></li>
+<li><p>{a<sup>n</sup>b<sup>m</sup>|n,m≥0且n+m为偶数}</p>
+<p>(aa)<sup>*</sup>(bb)<sup>*</sup>+(aa)<sup>*</sup>a(bb)<sup>*</sup>b</p></li>
+<li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥1,且w的后20位至少有一个a}</p>
+<p>(a+b)<sup>*</sup>a(a+b+ε)<sup>19</sup></p></li>
+<li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥1,且当w以a结尾时,它的长度为奇数}</p>
+<p>((a+b)(a+b))<sup>*</sup>a+(a+b)<sup>*</sup>b</p></li>
+<li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥2,且w的前5位至少有一个子串aa}</p>
+<p>(a+b+ε)<sup>3</sup>aa(a+b)<sup>*</sup></p></li>
+<li><p>{w|w∈{a,b}<sup>*</sup>,|w|≥2,且w的第2位至第5位至少有一个a}</p>
+<p>(a+b)(a+b+ε)<sup>3</sup>a(a+b)<sup>*</sup></p></li>
+<li><p>{w|w∈{0,1}<sup>*</sup>,w至少含有3个1,且倒数第3位为1}</p>
+<p>(0+1)<sup>*</sup>1(0+1)<sup>*</sup>1(0+1)<sup>*</sup>100+(0+1)<sup>*</sup>1(0+1)<sup>*</sup>1(01+10)+(0+1)<sup>*</sup>111</p></li>
+</ol>
+<h2 id="有限状态自动机与正规表达式的关系">有限状态自动机与正规表达式的关系</h2>
+<h3 id="thompson构造法">Thompson构造法</h3>
+<p>略</p>
+<h3 id="kleene构造法状态消去法">Kleene构造法&amp;状态消去法</h3>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2019/03/24/形式语言与自动机/dfa-4.png" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>运用状态消去法，消2，1到4的弧变为b(a+b)，4到自身的弧变为(a+b)<sup>2</sup></p>
+<p>最终的正则表达式为a<sup>*</sup>+a<sup>*</sup>b(a+b)((a+b)<sup>2</sup>)<sup>*</sup></p>
+<h2 id="正规语言的性质">正规语言的性质</h2>
+<ol type="1">
+<li><p>语言L由所有满足如下条件的0，1串构成：0的数目二倍于1的数目。试应用Pumping引理证明L不是正规语言。</p>
+<p>对于任意n，取w=0<sup>2n</sup>1<sup>n</sup>，任意满足w=xyz∧|xy|≤n∧y≠ε的x，y，z必有y全由0组成，则xy<sup>0</sup>z中0比1的两倍少，不在L中，L不是正规语言。</p></li>
+<li><p>语言L由所有满足如下条件的0, 1串构成：0的数目多于1的数目（ 对0 和1 在串中出现的次序没有限制）。试应用Pumping引理证明L不是正规语言。</p>
+<p>选w=0<sup>n+1</sup>1<sup>n</sup></p></li>
+</ol>
 
         </div>
 
@@ -428,7 +449,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-05-03T03:23:05.616Z" itemprop="dateUpdated">2019-05-03 11:23:05</time>
+    Last updated: <time datetime="2019-12-03T04:10:33.881Z" itemprop="dateUpdated">2019-12-03 12:10:33</time>
 </span><br>
 
 

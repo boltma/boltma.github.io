@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="MXY">
 <meta property="og:description" content="Fisher Information Fisher Information（费希尔信息）是用以衡量观测数据所蕴含的数据量，具体说来是指观测所得的随机变量\(X\)携带的关于未知参数\(\theta\)的信息量，其中\(X\)的概率分布依赖于\(\theta\)，通常记作\({\mathcal {I}}_{X}(\theta)\)。 对于概率分布\(f(X;\theta)\)（满足\(f(x;\">
 <meta property="og:locale" content="zh_cn">
-<meta property="og:updated_time" content="2019-05-02T15:39:31.844Z">
+<meta property="og:updated_time" content="2019-12-03T04:10:33.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fisher Information">
 <meta name="twitter:description" content="Fisher Information Fisher Information（费希尔信息）是用以衡量观测数据所蕴含的数据量，具体说来是指观测所得的随机变量\(X\)携带的关于未知参数\(\theta\)的信息量，其中\(X\)的概率分布依赖于\(\theta\)，通常记作\({\mathcal {I}}_{X}(\theta)\)。 对于概率分布\(f(X;\theta)\)（满足\(f(x;\">
@@ -157,7 +157,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#fisher-information"><span class="post-toc-number">1.</span> <span class="post-toc-text">Fisher Information</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#cramér-rao-bound"><span class="post-toc-number">2.</span> <span class="post-toc-text">Cramér-Rao Bound</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#多参数情形的fisher-information"><span class="post-toc-number">3.</span> <span class="post-toc-text">多参数情形的Fisher Information</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#fisher-information"><span class="post-toc-number">1.</span> <span class="post-toc-text">Fisher Information</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#cramér-rao-bound"><span class="post-toc-number">2.</span> <span class="post-toc-text">Cramér-Rao Bound</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#多参数情形的fisher-information"><span class="post-toc-number">3.</span> <span class="post-toc-text">多参数情形的Fisher Information</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#与其它散度测度的关系"><span class="post-toc-number">4.</span> <span class="post-toc-text">与其它散度测度的关系</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#与熵的关系"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">与熵的关系</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#de-bruijn恒等式"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">de Bruijn恒等式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#卷积不等式"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">卷积不等式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#熵幂不等式"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">熵幂不等式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#fisher-information-natural-gradient"><span class="post-toc-number">5.</span> <span class="post-toc-text">Fisher Information &amp; Natural Gradient</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#references"><span class="post-toc-number">6.</span> <span class="post-toc-text">References</span></a></li></ol>
         </nav>
     </aside>
 
@@ -190,6 +190,12 @@
 <p><span class="math inline">\({\mathcal {I}}(\theta )=-\operatorname {E} \left[\left.{\frac {\partial ^{2}}{\partial \theta ^{2}}}\log f(X;\theta )\right|\theta \right]\)</span></p>
 <p>这个表达式以如下方式表达了观测所携带的信息量：若对数似然函数较为平坦，则我们对<span class="math inline">\(\theta\)</span>的估计较差，反之，若对数似然函数有高而窄的峰，则我们可以得到对<span class="math inline">\(\theta\)</span>的较好估计，而这个性状由负二阶导数表征。</p>
 <p>由于n个样本的对数似然函数为单个似然函数之和，容易证明，n个独立同分布样本的费希尔信息是单个样本的费希尔信息的n倍。</p>
+<p>费希尔信息的三种观点：</p>
+<ul>
+<li>得分（对数似然函数的偏导）的方差</li>
+<li>对数似然函数负二阶偏导的期望</li>
+<li>最大似然估计渐近分布的方差的倒数</li>
+</ul>
 <h1 id="cramér-rao-bound">Cramér-Rao Bound</h1>
 <p>费希尔信息的重要性在于<strong>Cramér-Rao不等式</strong>，或<strong>Cramér-Rao Bound（克拉美罗界）</strong>：</p>
 <p>费希尔信息的倒数是参数<span class="math inline">\(\theta\)</span>的任何无偏估计<span class="math inline">\(\hat\theta\)</span>的方差的下界，即<span class="math inline">\(\operatorname {var} ({\hat {\theta }})\geq {\frac {1}{\mathcal {I}(\theta )}}\)</span></p>
@@ -212,6 +218,42 @@
 <h1 id="多参数情形的fisher-information">多参数情形的Fisher Information</h1>
 <p>多参数下有<strong>费希尔信息矩阵</strong><span class="math inline">\(\mathcal{I}(\theta)\)</span>，其中元素为<span class="math inline">\(\mathcal{I}_{m,k}=\operatorname {E} \left[{\frac {\partial }{\partial \theta _{m}}}\log f\left(x;\theta\right){\frac {\partial }{\partial \theta _{k}}}\log f\left(x;\theta\right)\right]=-\operatorname {E} \left[{\frac {\partial ^{2}}{\partial \theta _{m}\partial \theta _{k}}}\log f\left(x;\theta\right)\right]\)</span></p>
 <p><strong>Cramér-Rao不等式</strong>变为：<span class="math inline">\(\Sigma\geq\mathcal{I}^{-1}(\theta)\)</span>，这里矩阵不小于号指差是半正定的，<span class="math inline">\(\Sigma\)</span>是关于<span class="math inline">\(\theta\)</span>的一组无偏估计量的协方差矩阵。</p>
+<h1 id="与其它散度测度的关系">与其它散度测度的关系</h1>
+<h2 id="与熵的关系">与熵的关系</h2>
+<p>以<span class="math inline">\(f(x)\)</span>为密度函数的随机变量<span class="math inline">\(X\)</span>的微分熵（differential entropy）定义为：</p>
+<p><span class="math display">\[h(x)=-\int_{S}f(x)\log f(x)dx\]</span> 对<span class="math inline">\(\epsilon&gt;0\)</span>及任意<span class="math inline">\(n\)</span>，定义<span class="math inline">\(f(x)\)</span>的典型集<span class="math inline">\(A_{\epsilon}^{(n)}\)</span>如下：</p>
+<p><span class="math display">\[\begin{aligned} A_{\epsilon}^{(n)}=\{&amp;(x_1,x_2,\cdots,x_n)\in S^n: \\ &amp;\left|-\frac{1}{n}\log f(x_1,x_2,\cdots,x_n)-h(X)\right|\leq\epsilon \} \end{aligned}\]</span> 这里<span class="math inline">\(f(x_1,x_2,\cdots,x_n) = \prod\limits_{i=1}^{n}f(x_i)\)</span></p>
+<p>典型集是所有概率<span class="math inline">\(\geq1-\epsilon\)</span>的集合中体积最小的。</p>
+<p>熵表征了典型集的体积（典型集体积渐近趋于<span class="math inline">\(2^{nh}\)</span>，其中<span class="math inline">\(h\)</span>为熵），而费希尔信息与典型集的表面积相关。</p>
+<h2 id="de-bruijn恒等式">de Bruijn恒等式</h2>
+<p>设<span class="math inline">\(X\)</span>为任一随机变量，其密度函数为<span class="math inline">\(f(x)\)</span>且方差有限。令<span class="math inline">\(Z\)</span>是与<span class="math inline">\(X\)</span>独立的正态分布的随机变量，均值为0，方差为1。则：</p>
+<p><span class="math display">\[\frac{\partial}{\partial t}h_e(X+\sqrt{t}Z)=\frac{1}{2}\mathcal{I}(X+\sqrt{t}Z)\]</span></p>
+<p>此处<span class="math inline">\(h_e\)</span>表明微分熵公式中底数为<span class="math inline">\(e\)</span>，费希尔信息是关于随机变量分布的费希尔信息。特别地，若<span class="math inline">\(t\rightarrow 0\)</span>时极限存在，则<span class="math inline">\(\frac{\partial}{\partial t}h_e(X+\sqrt{t}Z)\big|_{t=0}=\frac{1}{2}\mathcal{I}(X)\)</span></p>
+<p>通常<span class="math inline">\(t\)</span>被视作一种扰动。</p>
+<h2 id="卷积不等式">卷积不等式</h2>
+<p><span class="math display">\[\frac{1}{\mathcal{I}(X+Y)} \geq \frac{1}{\mathcal{I}(X)} + \frac{1}{\mathcal{I}(Y)}\]</span></p>
+<h2 id="熵幂不等式">熵幂不等式</h2>
+<p>设<span class="math inline">\(\mathbf{X}\)</span>和<span class="math inline">\(\mathbf{Y}\)</span>为相互独立的<span class="math inline">\(n\)</span>维随机向量，它们的密度函数已知，则：</p>
+<p><span class="math display">\[2^{\frac{2}{n}h(\mathbf{X}+\mathbf{Y})}\geq 2^{\frac{2}{n}h(\mathbf{X})}+2^{\frac{2}{n}h(\mathbf{Y})}\]</span></p>
+<p>对于两个独立的随机变量<span class="math inline">\(X\)</span>和<span class="math inline">\(Y\)</span>，<span class="math inline">\(h(X+Y)\geq h(X&#39;+Y&#39;)\)</span>，这里<span class="math inline">\(X&#39;\)</span>和<span class="math inline">\(Y&#39;\)</span>是相互独立的正态分布的随机变量，且满足<span class="math inline">\(h(X&#39;)=h(X)\)</span>且<span class="math inline">\(h(Y&#39;)=h(Y)\)</span>。</p>
+<h1 id="fisher-information-natural-gradient">Fisher Information &amp; Natural Gradient</h1>
+<p>在概率分布函数具备良好性质时，Fisher信息矩阵和KL散度的Hesse矩阵的相反数相等。因而在牛顿迭代法中，使用Fisher信息矩阵代替Hesse矩阵，有时更易求解。</p>
+<blockquote>
+<p><strong>Natural Gradient（自然梯度法）</strong></p>
+<p><span class="math display">\[{\displaystyle \theta _{m+1}=\theta _{m}+\eta_m{\mathcal {I}}^{-1}(\theta _{m})V(\theta _{m})}\]</span></p>
+<p>（<span class="math inline">\(V\)</span>为关于<span class="math inline">\(\theta\)</span>的得分函数）</p>
+</blockquote>
+<p>自然梯度法考虑了参数的不同维度对目标函数不同的影响，加速了梯度下降法的收敛。</p>
+<p>SGD（随机梯度下降）中，假设中心极限定理，随机梯度作为一个随机变量，满足正态分布。那么迭代中，相当于使用全部数据计算的梯度，附加上协方差矩阵，即：（<span class="math inline">\(t\)</span>为mini-batch的规模）</p>
+<p><span class="math display">\[{\displaystyle \theta _{m+1}=\theta _{m}+\eta_m V_0(\theta _{m})}+\frac{\eta_m}{\sqrt{t}}\epsilon_m, \epsilon_m\sim\mathcal{N}(0,\hat{\Sigma}(\theta_m))\]</span></p>
+<p>上式中，协方差与目标函数的曲率在真实参数上相等。而在迭代过程中也近似相等。</p>
+<p>这表明这样的SGD中的噪声遵循目标函数的曲率，使得迭代时更容易逃离局部的sharp minima，进入flat minima，从而得到泛化能力更强的解。因而使用自然梯度的随机梯度下降能获得更强的泛化能力，也通常能加快迭代速度。</p>
+<h1 id="references">References</h1>
+<ol type="1">
+<li><p>Wikipedia contributors, &quot;Fisher information —— Wikipedia, the free encyclopedia,&quot; 2019. [Online; accessed 24-May-2019].</p></li>
+<li><p>T. M. Cover and J. A. Thomas, <em>Elements of information theory.</em> John Wiley &amp; Sons, 2012.</p></li>
+<li><p>J. Duchi, &quot;Lecture notes for statistics 311/electrical engineering 377,&quot; URL:<a href="https://stanford.edu/class/stats311/Lectures/full_notes.pdf" class="uri" target="_blank" rel="noopener">https://stanford.edu/class/stats311/Lectures/full_notes.pdf</a> . Last visited on, vol. 2, p. 23, 2016.</p></li>
+</ol>
 
         </div>
 
@@ -220,7 +262,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-05-02T15:39:31.844Z" itemprop="dateUpdated">2019-05-02 23:39:31</time>
+    Last updated: <time datetime="2019-12-03T04:10:33.872Z" itemprop="dateUpdated">2019-12-03 12:10:33</time>
 </span><br>
 
 
