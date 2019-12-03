@@ -21,26 +21,26 @@
     
     
     <meta name="keywords" content>
-    <meta name="description" content="RC-NVM是指Row-Column Non-Volatile Memory，是一种新型的对称式非易失存储器架构。本文是HPCA 2018 RC-NVM: Enabling symmetric row and column memory accesses for in-memory databases1一文的学习总结与分析。 [TOC] 背景介绍 对于关系数据库应用，传统硬盘存储只将小部分数">
+    <meta name="description" content="RC-NVM是指Row-Column Non-Volatile Memory，是一种新型的对称式非易失存储器架构。本文是HPCA 2018 RC-NVM: Enabling symmetric row and column memory accesses for in-memory databases1一文的学习总结与分析。 背景介绍 对于关系数据库应用，传统硬盘存储只将小部分数据缓存于内存中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RC-NVM技术详解（上）">
 <meta property="og:url" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/index.html">
 <meta property="og:site_name" content="MXY">
-<meta property="og:description" content="RC-NVM是指Row-Column Non-Volatile Memory，是一种新型的对称式非易失存储器架构。本文是HPCA 2018 RC-NVM: Enabling symmetric row and column memory accesses for in-memory databases1一文的学习总结与分析。 [TOC] 背景介绍 对于关系数据库应用，传统硬盘存储只将小部分数">
+<meta property="og:description" content="RC-NVM是指Row-Column Non-Volatile Memory，是一种新型的对称式非易失存储器架构。本文是HPCA 2018 RC-NVM: Enabling symmetric row and column memory accesses for in-memory databases1一文的学习总结与分析。 背景介绍 对于关系数据库应用，传统硬盘存储只将小部分数据缓存于内存中">
 <meta property="og:locale" content="zh_cn">
-<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/C:/Users/mxy/Documents/boltma.github.io/source/_posts/RC-NVM技术详解（上）/4.png">
-<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/C:/Users/mxy/Documents/boltma.github.io/source/_posts/RC-NVM技术详解（上）/1.png">
-<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/C:/Users/mxy/Documents/boltma.github.io/source/_posts/RC-NVM技术详解（上）/2.png">
-<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/C:/Users/mxy/Documents/boltma.github.io/source/_posts/RC-NVM技术详解（上）/3.png">
-<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/C:/Users/mxy/Documents/boltma.github.io/source/_posts/RC-NVM技术详解（上）/5.png">
-<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/C:/Users/mxy/Documents/boltma.github.io/source/_posts/RC-NVM技术详解（上）/6.png">
-<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/C:/Users/mxy/Documents/boltma.github.io/source/_posts/RC-NVM技术详解（上）/7.png">
-<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/C:/Users/mxy/Documents/boltma.github.io/source/_posts/RC-NVM技术详解（上）/8.png">
-<meta property="og:updated_time" content="2019-12-03T14:01:34.855Z">
+<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/4.png">
+<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/1.png">
+<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/2.png">
+<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/3.png">
+<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/5.png">
+<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/6.png">
+<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/7.png">
+<meta property="og:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/8.png">
+<meta property="og:updated_time" content="2019-12-03T14:09:32.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RC-NVM技术详解（上）">
-<meta name="twitter:description" content="RC-NVM是指Row-Column Non-Volatile Memory，是一种新型的对称式非易失存储器架构。本文是HPCA 2018 RC-NVM: Enabling symmetric row and column memory accesses for in-memory databases1一文的学习总结与分析。 [TOC] 背景介绍 对于关系数据库应用，传统硬盘存储只将小部分数">
-<meta name="twitter:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/C:/Users/mxy/Documents/boltma.github.io/source/_posts/RC-NVM技术详解（上）/4.png">
+<meta name="twitter:description" content="RC-NVM是指Row-Column Non-Volatile Memory，是一种新型的对称式非易失存储器架构。本文是HPCA 2018 RC-NVM: Enabling symmetric row and column memory accesses for in-memory databases1一文的学习总结与分析。 背景介绍 对于关系数据库应用，传统硬盘存储只将小部分数据缓存于内存中">
+<meta name="twitter:image" content="http://boltma.github.io/2019/12/03/RC-NVM技术详解（上）/4.png">
     
         <link rel="alternate" type="application/atom+xml" title="MXY" href="/atom.xml">
     
@@ -190,7 +190,6 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>RC-NVM是指Row-Column Non-Volatile Memory，是一种新型的对称式非易失存储器架构。本文是HPCA 2018 <em>RC-NVM: Enabling symmetric row and column memory accesses for in-memory databases</em><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>一文的学习总结与分析。</p>
-<p>[TOC]</p>
 <h1 id="背景介绍">背景介绍</h1>
 <p>对于关系数据库应用，传统硬盘存储只将小部分数据缓存于内存中，具有高I/O延时，而随着DRAM价格降低、容量提升，IMDB（in-memory database，内存数据库）成为可能。</p>
 <p>关系数据库以二维表格存储数据。数据库应用的工作量主要分为两种：OLTP（on-line transactional processing，联机事务处理）与OLAP（on-line analytical processing，联机分析处理）。其中OLTP主要是对数行的读写过程，并且对延时性能要求较高，主要见于交易处理系统。OLAP主要是大量连续跨行、涉及数列的数据处理，例如求列上数据之和，主要见于数据仓库。</p>
@@ -198,9 +197,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/03/RC-NVM技术详解（上）/C:/Users\mxy\Documents\boltma.github.io\source\_posts\RC-NVM技术详解（上）\4.png" alt="4" title>
+                    <img src="/2019/12/03/RC-NVM技术详解（上）/4.png" alt title>
                 </div>
-                <div class="image-caption">4</div>
+                <div class="image-caption"></div>
             </figure>
 <p>上图为按行存储的数据库的具体形式，其中上半部分展现了一种OLTP操作，下半部分展现了一种OLAP操作，注意到OLAP操作中cache的利用率较低。</p>
 <p>要解决这一问题，同时支持按行读取与按列读取的内存架构是必要的。现有的技术主要有：GS-DRAM、transposable SRAM、RC-DRAM。</p>
@@ -211,16 +210,16 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/03/RC-NVM技术详解（上）/C:/Users\mxy\Documents\boltma.github.io\source\_posts\RC-NVM技术详解（上）\1.png" alt="1" title>
+                    <img src="/2019/12/03/RC-NVM技术详解（上）/1.png" alt title>
                 </div>
-                <div class="image-caption">1</div>
+                <div class="image-caption"></div>
             </figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/03/RC-NVM技术详解（上）/C:/Users\mxy\Documents\boltma.github.io\source\_posts\RC-NVM技术详解（上）\2.png" alt="2" title>
+                    <img src="/2019/12/03/RC-NVM技术详解（上）/2.png" alt title>
                 </div>
-                <div class="image-caption">2</div>
+                <div class="image-caption"></div>
             </figure>
 <p>如上所示，cache中存储的并非是按行读取的数据，而是跨行的字段，这样的架构可以做到行、列都具有较高的效率。具体而言，通过以下两个技术，可以使得每行的数据中对应的同一列（字段）地址错开，这样可以存于cache中的不同位置，并可以反向推断内存地址（cache中地址大致等同于内存地址的最末若干位，这种描述不精确，但足以描述这种方法的思想）。</p>
 <ul>
@@ -239,9 +238,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/03/RC-NVM技术详解（上）/C:/Users\mxy\Documents\boltma.github.io\source\_posts\RC-NVM技术详解（上）\3.png" alt="3" title>
+                    <img src="/2019/12/03/RC-NVM技术详解（上）/3.png" alt title>
                 </div>
-                <div class="image-caption">3</div>
+                <div class="image-caption"></div>
             </figure>
 <p>RC-DRAM<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>是针对现有的DRAM单元进行的直接改进，每个单元含二晶体管、一电容，是完全对称的结构，在阵列级别上能够同时支持按行、按列的读取（并且完全对称）。</p>
 <p>这使得按列的读取与按行的读取完全对称，解决了上述的问题。</p>
@@ -252,9 +251,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/03/RC-NVM技术详解（上）/C:/Users\mxy\Documents\boltma.github.io\source\_posts\RC-NVM技术详解（上）\5.png" alt="5" title>
+                    <img src="/2019/12/03/RC-NVM技术详解（上）/5.png" alt title>
                 </div>
-                <div class="image-caption">5</div>
+                <div class="image-caption"></div>
             </figure>
 <p>图示为一8*32RRAM构成的Crossbar阵列。RRAM也可以用其它有非易失特性的器件（如PCM）替代。其中每个RRAM单元跨接在字线与位线的交点上，通过行线和列线上施加不同电平可以按行或按列进行读写，具体读写方式不在此赘述。</p>
 <p>Crossbar架构的优势在于，每个非易失存储单元本身即完全对称，在架构中按行与按列的读写完全对称。与RC-DRAM相比，其不需要额外的晶体管用于行列读写的控制，因而它的额外面积开销显著更小。</p>
@@ -263,9 +262,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/03/RC-NVM技术详解（上）/C:/Users\mxy\Documents\boltma.github.io\source\_posts\RC-NVM技术详解（上）\6.png" alt="6" title>
+                    <img src="/2019/12/03/RC-NVM技术详解（上）/6.png" alt title>
                 </div>
-                <div class="image-caption">6</div>
+                <div class="image-caption"></div>
             </figure>
 <p>上图为RC-NVM的具体logic bank设计。除去基本的Crossbar阵列外，有一些外围电路。</p>
 <p>字线与位线均连接到专用的解码器（decoder），感测放大器（sense amplifier, SA），写驱动器（write driver, WD）之上。这些连接均用多路复用器（multiplexer, MUX）控制，控制信号由内存控制器发出。除去已有的行缓冲区外，还要增加一个列缓冲区。</p>
@@ -275,16 +274,16 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/03/RC-NVM技术详解（上）/C:/Users\mxy\Documents\boltma.github.io\source\_posts\RC-NVM技术详解（上）\7.png" alt="7" title>
+                    <img src="/2019/12/03/RC-NVM技术详解（上）/7.png" alt title>
                 </div>
-                <div class="image-caption">7</div>
+                <div class="image-caption"></div>
             </figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/03/RC-NVM技术详解（上）/C:/Users\mxy\Documents\boltma.github.io\source\_posts\RC-NVM技术详解（上）\8.png" alt="8" title>
+                    <img src="/2019/12/03/RC-NVM技术详解（上）/8.png" alt title>
                 </div>
-                <div class="image-caption">8</div>
+                <div class="image-caption"></div>
             </figure>
 <p>此两图显示了该电路设计的面积与延时特性。</p>
 <p>上图是面积特性，横轴表示字线与位线的数目（方阵），纵轴为RC-DRAM与RC-NVM相比传统DRAM或NVM的面积多余开销，这里DRAM与RRAM被设定在同一工艺节点上，容量为4GB，具体评测方法参见文献。可见的是，RC-DRAM具有极大的额外开销（大于两倍），且在电路规模增大时，额外开销更大；但RC-NVM额外开销较小，主要来源于外围电路，因而随着规模扩大，额外开销的的比例在缩小。当字线与位线数为512时，额外面积开销小于20%。</p>
@@ -308,7 +307,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-12-03T14:01:34.855Z" itemprop="dateUpdated">2019-12-03 22:01:34</time>
+    Last updated: <time datetime="2019-12-03T14:09:32.826Z" itemprop="dateUpdated">2019-12-03 22:09:32</time>
 </span><br>
 
 
