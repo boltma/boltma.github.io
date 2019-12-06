@@ -46,7 +46,7 @@
 <meta property="og:image" content="http://boltma.github.io/2019/12/04/RC-NVM技术详解（下）/16.png">
 <meta property="og:image" content="http://boltma.github.io/2019/12/04/RC-NVM技术详解（下）/17.png">
 <meta property="og:image" content="http://boltma.github.io/2019/12/04/RC-NVM技术详解（下）/18.png">
-<meta property="og:updated_time" content="2019-12-06T06:18:39.626Z">
+<meta property="og:updated_time" content="2019-12-06T06:20:14.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RC-NVM技术详解（下）">
 <meta name="twitter:description" content="本文是HPCA 2018 RC-NVM: Enabling symmetric row and column memory accesses for in-memory databases1一文的学习总结与分析。这一部分将主要总结RC-NVM的总体架构设计。 值得注意的是，此架构设计的思路中，并不特定针对RC-NVM的电路设计，因而总体而言适用于不同的对称式存储器。 RC-NVM架构设计 内">
@@ -137,7 +137,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -245,7 +245,7 @@
 <li>多核处理器的缓存同义与缓存一致性</li>
 </ol>
 <h3 id="双寻址下的缓存存储">双寻址下的缓存存储</h3>
-<p>RC-NVM在两个不同方向上，地址格式都与传统内存相同，因而缓存寻址也可以直接使用传统的方式，解码电路也不必更改。为了区分两个不同方向的地址，缓存中需要增加一个<strong>方向位</strong>（orientation bit），按行读取的数据方向位置0，按列读取的数据方向位置1。</p>
+<p>RC-NVM在两个不同方向上，地址格式都与传统内存相同，因而缓存寻址也可以直接使用传统的方式，解码电路也不必更改。为了区分两个不同方向的地址，缓存中需要增加一个<strong>方向位（orientation bit）</strong>，按行读取的数据方向位置0，按列读取的数据方向位置1。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -447,7 +447,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-12-06T06:18:39.626Z" itemprop="dateUpdated">2019-12-06 14:18:39</time>
+    最后更新时间：<time datetime="2019-12-06T06:20:14.739Z" itemprop="dateUpdated">2019-12-06 14:20:14</time>
 </span><br>
 
 
@@ -581,7 +581,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
