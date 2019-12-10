@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    
+    
+    
+    <title>铁电TCAM与少样本学习 | MXY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="本文是Nature Electronics上倪凯Ferroelectric ternary content-addressable memory for one-shot learning1一文的学习总结与分析，同时也补充了一些技术最近的动向与分析。 作为一篇Nature子刊的文章，这篇工作有两大非常重要的主要工作：阐述了将TCAM应用于少样本学习的方法，以及提出一种每单元两个铁电晶体管的TCA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="铁电TCAM与少样本学习">
+<meta property="og:url" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/index.html">
+<meta property="og:site_name" content="MXY">
+<meta property="og:description" content="本文是Nature Electronics上倪凯Ferroelectric ternary content-addressable memory for one-shot learning1一文的学习总结与分析，同时也补充了一些技术最近的动向与分析。 作为一篇Nature子刊的文章，这篇工作有两大非常重要的主要工作：阐述了将TCAM应用于少样本学习的方法，以及提出一种每单元两个铁电晶体管的TCA">
+<meta property="og:locale" content="zh_cn">
+<meta property="og:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/1.webp">
+<meta property="og:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/2.webp">
+<meta property="og:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/3.png">
+<meta property="og:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/4.webp">
+<meta property="og:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/5.png">
+<meta property="og:updated_time" content="2019-12-10T13:34:31.109Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="铁电TCAM与少样本学习">
+<meta name="twitter:description" content="本文是Nature Electronics上倪凯Ferroelectric ternary content-addressable memory for one-shot learning1一文的学习总结与分析，同时也补充了一些技术最近的动向与分析。 作为一篇Nature子刊的文章，这篇工作有两大非常重要的主要工作：阐述了将TCAM应用于少样本学习的方法，以及提出一种每单元两个铁电晶体管的TCA">
+<meta name="twitter:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/1.webp">
+    
+        <link rel="alternate" type="application/atom+xml" title="MXY" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">mxy</h5>
+          <a href="mailto:maxy18@mails.tsinghua.edu.cn" title="maxy18@mails.tsinghua.edu.cn" class="mail">maxy18@mails.tsinghua.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/boltma" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">铁电TCAM与少样本学习</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">铁电TCAM与少样本学习</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-09T14:30:36.000Z" itemprop="datePublished" class="page-time">
+  2019-12-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关键技术"><span class="post-toc-number">1.</span> <span class="post-toc-text">关键技术</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tcam"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">TCAM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fefet"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">FeFET</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#lsh"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">LSH</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#主要工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">主要工作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#记忆增强神经网络"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">记忆增强神经网络</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fefetcell-tcam"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2FeFET/Cell TCAM</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#后续跟进"><span class="post-toc-number">3.</span> <span class="post-toc-text">后续跟进</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-铁电TCAM与少样本学习" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">铁电TCAM与少样本学习</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-09 22:30:36" datetime="2019-12-09T14:30:36.000Z" itemprop="datePublished">2019-12-09</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文是Nature Electronics上倪凯<em>Ferroelectric ternary content-addressable memory for one-shot learning</em><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>一文的学习总结与分析，同时也补充了一些技术最近的动向与分析。</p>
+<p>作为一篇Nature子刊的文章，这篇工作有两大非常重要的主要工作：阐述了将TCAM应用于少样本学习的方法，以及提出一种每单元两个铁电晶体管的TCAM结构。这篇文章除提出了可行性外，也留下了很多可以后续跟进的未解决的细节，非常值得深入学习。</p>
+<p>可以参见Nature Electronics上的一篇评论<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>简要了解这项工作。</p>
+<h1 id="关键技术">关键技术</h1>
+<h2 id="tcam">TCAM</h2>
+<p><strong>三态内容寻址存储器（TCAM, ternary content-addressable memory）</strong>是由<strong>CAM</strong>发展而来的一种存储器。它是一种很有前景的新型存储器，对于CAM，它除了有传统内存的功能（向指定地址写入数据，或从指定地址读出数据）外，还支持一种特殊的功能：输入待查数据，返回该数据被存储的地址。</p>
+<p>这种功能非常强大，因为传统上要从内存中查找一项数据，不但需要一个好的查找算法，而且还会浪费大量时间将数据从内存搬运至CPU。而如果我们在电路层面支持在内存中查找数据，直接返回地址给CPU将非常有利。CAM与TCAM的区别在于：CAM只支持精确匹配，而TCAM则在比较数据时支持第三态（don't care），即对每一个比特，有0（mismatch）、1（match）和x（don't care）三态，因而支持模糊匹配。</p>
+<h2 id="fefet">FeFET</h2>
+<p><strong>铁电晶体管（FeFET，ferroelectric field-effect transistor）</strong>，重要的新型存储器件，不必多做介绍。基本原理在于：在传统MOSFET栅极的电容中加入一层铁电材料（如HfO<sub>2</sub>），使得可以通过铁电材料的正负极化存储数据。正极化时，晶体管阈值电压较低；负极化时，晶体管阈值电压较高。铁电晶体管的优点在于：</p>
+<ul>
+<li><p>非易失存储；</p></li>
+<li>无直流写功耗；</li>
+<li>兼容现有的先进工艺；</li>
+<li>可利用电流电压特性曲线中滞回特性的负电容效应进一步进行低功耗电路设计；</li>
+<li><p>兼具非易失存储与晶体管的控制特性，电路设计灵活。</p></li>
+</ul>
+<p>铁电晶体管的主要缺点是寿命较短，现有的HfO<sub>2</sub>铁电晶体管寿命约为10<sup>5</sup>周期<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>，这主要是受铁电绝缘层的<strong>电荷捕捉效应（charge trapping effect）</strong>限制<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>。</p>
+<p>铁电晶体管的最近动向包括：</p>
+<ul>
+<li>通过抑制电荷捕捉效应提高寿命<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>，在参考文献的工作中可以达到10<sup>12</sup>周期；</li>
+<li>利用电荷捕捉效应存储数据，实现铁电晶体管的另一种存储。这种存储是易失的，但寿命较长，相当于一种动态内存。可以利用两种存储的联合进行一些应用优化；</li>
+<li>多层不同铁电材料的堆叠，每层存储一个比特，材料与厚度不同，通过设置参数以实现较好的<strong>多层单元（MLC，multi-layer cell）</strong>存储；</li>
+<li>铁电二极管（Fe Diode）的应用。</li>
+</ul>
+<h2 id="lsh">LSH</h2>
+<p><strong>局部敏感哈希（LSH，locality-sensitive hashing）</strong>，是这篇工作中将神经网络与TCAM结合的关键技术。与传统哈希不同，局部敏感哈希希望数据相似时，哈希值相似；数据相距较远时，哈希值也相距较远。</p>
+<h1 id="主要工作">主要工作</h1>
+<h2 id="记忆增强神经网络">记忆增强神经网络</h2>
+<p>使用<strong>记忆增强神经网络（MANN，memory augmented neural networks）</strong>进行<strong>元学习（meta-learning）</strong>并不是什么新鲜的事。以分类问题为例，少样本的学习一直是很困难的问题。使用MANN我们可以不必在遇到新数据时重新训练学习参数，而是只需回写一个键值<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>。对于MANN的具体理论我们不做分析，这里我们更关注如何利用TCAM提升它的效率。我们所针对的是MANN中的这样一个过程：将存储的参数从存储单元（内存或显存）搬运到计算单元（CPU或GPU），逐条比对距离后，找到最接近的类别。这个操作极其耗时，但利用TCAM我们可以大幅减低这个耗时，距离的比对将在存储单元中直接完成，并由存储单元返回类别。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2019/12/09/铁电TCAM与少样本学习/1.webp" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>上图显示了在TCAM上进行MANN操作的具体方式。以N-Way K-Shot分类问题（N个类别，每个类别K个样本，K很小）为例，我们从训练集中提取特征，然后存在内存中。对于查询请求，我们也提取其特征，与存储的特征比较余弦距离，然后得出分类，并将其特征以一定方式写回内存。这里具体的特征提取、写回内存的特征均不是我们关心的。传统方式下，如果我们有M个数据项要比对，每个是D维的，那么需要进行MD次乘法和M(D-1)次加法。</p>
+<p>使用TCAM进行特征的比较时，我们最主要的问题在于，TCAM仅能进行二进制编码的匹配，而特征提取实际上是应该进行余弦距离比较的。为此，我们将特征提取的最后一层网络（通常应是softmax层）替换为LSH层，从而我们能转换为一个二值签名，只需比较汉明距离即可。在测评中可以看到，只要LSH算法较好时，网络的准确度不会下降太多。LSH层数是一个超参数，可以进行调参使得准确率不随之提高。</p>
+<p>另外LSH可以使用精确的，从而TCAM作为CAM使用；LSH也可以是模糊的<strong>（ternary LSH）</strong>，从而利用TCAM的第三态特性。</p>
+<p>使用TCAM，效率是很高的，也节省了很多功耗。这一点毋庸置疑，具体分析可以详见文献。而且准确率的下降在可接受范围内。文献中指出，在Omniglot数据集上，一次搜索能量降低到1/60，延时降低到1/2700。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2019/12/09/铁电TCAM与少样本学习/2.webp" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="fefetcell-tcam">2FeFET/Cell TCAM</h2>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2019/12/09/铁电TCAM与少样本学习/3.png" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>这个TCAM单元结构如图。两个FeFET分别存储互补的数据，即存储逻辑1时，左管负极化（高阈值电压），右管正极化（低阈值电压）； 存储逻辑0时，左管正极化，右管负极化。查找时，先给ML（match line）预充电到高电平，放开，然后通过SL（search line）给两个铁电管栅极施加互补的电压：查找逻辑1，左管高电平，右管低电平；查找逻辑0，左管低电平，右管高电平。如果失配，则正极化的铁电管SL上是高电平，则打开，ML接地将ML电放去。如果匹配，则正极化铁电管SL是低电平，截止，负极化铁电管也截止，那么ML维持高电平。对于x状态（don't care）有两种方式实现：可通过使两个铁电管均负极化存储x；或查找时两根SL均通低电平，两种方式下ML均维持高电平。</p>
+<p>具体对一个阵列而言，判定匹配程度是通过ML放电速度判断的。这个放电过程是简单的寄生电容一阶放电过程，符合指数衰减1-exp(-t/τ)，其中τ与失配单元数量成正比，如下图所示（这也很容易理解）。图示为6个TCAM单元的情形，实际上补充材料显示了更多数量并联的可能性（可以继续设计外围电路，这并非重点）。我们需要注意的是：我们并不需要区分具体有多少个单元失配，我们可能只需了解哪些行是最匹配的。因而放电速度最快的几行可以直接忽略，可以等待一定时间再查看电平（这个时间损耗很小）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2019/12/09/铁电TCAM与少样本学习/4.webp" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>与传统的其它TCAM结构比较，这个结构具有相当多的优势。与CMOS实现的TCAM相比，CMOS需要16个晶体管，非常浪费空间，而且不具有非易失特性。与阻变器件实现的TCAM相比，铁电晶体管不必有直流电流流经阻性器件，大大节约功耗，同时阻变器件要在集成电路的<strong>后道工序（BEOL，Back end of line）</strong>加工，使得寄生效应明显，更加剧了漏电，并且阻变器件的高阻和低阻之比较小，从而可探测范围较小 ，需要更精细的外围放大感测电路。下表显示了现有的TCAM单元的实现方式的比较。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2019/12/09/铁电TCAM与少样本学习/5.png" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="后续跟进">后续跟进</h1>
+<p>我认为值得跟进的点有以下内容：</p>
+<ul>
+<li>TCAM外围感知电路的设计</li>
+<li>电路层更大规模TCAM阵列的可行性（注意写干扰问题）</li>
+<li>其它AI应用上的使用前景（本文只是demo）</li>
+</ul>
+<p>参考文献中值得注意的TCAM相关，后续需要阅读的有：</p>
+<ul>
+<li>Karam, Robert, et al. &quot;Emerging trends in design and applications of memory-based computing and content-addressable memories.&quot; <em>Proceedings of the IEEE</em> 103.8 (2015): 1311-1330.、</li>
+<li>Laguna, Ann Franchesca, Michael Niemier, and X. Sharon Hu. &quot;Design of hardware-friendly memory enhanced neural networks.&quot; <em>2019 Design, Automation &amp; Test in Europe Conference &amp; Exhibition (DATE)</em>. IEEE, 2019.</li>
+<li>Ni, Kai, et al. &quot;Write disturb in ferroelectric FETs and its implication for 1T-FeFET and memory arrays.&quot; <em>IEEE Electron Device Letters</em> 39.11 (2018): 1656-1659.</li>
+</ul>
+<p>总而言之，这篇文章信息量实在太大，值得日后再次仔细阅读。</p>
+<h1 id="参考文献">参考文献</h1>
+<section class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Ni, Kai, et al. &quot;Ferroelectric ternary content-addressable memory for one-shot learning.&quot; <em>Nature Electronics</em> 2.11 (2019): 521-529.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p> Huang, Peng, Runze Han, and Jinfeng Kang. &quot;AI learns how to learn with TCAMs.&quot; <em>Nature Electronics</em> 2.11 (2019): 493-494.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Müller, J., et al. &quot;Ferroelectricity in HfO 2 enables nonvolatile data storage in 28 nm HKMG.&quot; <em>2012 Symposium on VLSI Technology (VLSIT)</em>. IEEE, 2012.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Yurchuk, Ekaterina, et al. &quot;Charge-trapping phenomena in HfO 2-based FeFET-type nonvolatile memories.&quot; <em>IEEE Transactions on Electron Devices</em> 63.9 (2016): 3501-3507.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Ni, Kai, et al. &quot;Critical role of interlayer in Hf 0.5 Zr 0.5 O 2 ferroelectric FET nonvolatile memory performance.&quot; <em>IEEE Transactions on Electron Devices</em> 65.6 (2018): 2461-2469.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>Santoro, Adam, et al. &quot;Meta-learning with memory-augmented neural networks.&quot; <em>International conference on machine learning</em>. 2016.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-12-10T13:34:31.109Z" itemprop="dateUpdated">2019-12-10 21:34:31</time>
+</span><br>
+
+
+        
+        <a href="/2019/12/09/铁电TCAM与少样本学习/" target="_blank" rel="external">http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://boltma.github.io">
+            <img src="/img/avatar.jpg" alt="mxy">
+            mxy
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&title=《铁电TCAM与少样本学习》 — MXY&pic=http://boltma.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&title=《铁电TCAM与少样本学习》 — MXY&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《铁电TCAM与少样本学习》 — MXY&url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&via=http://boltma.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/04/RC-NVM技术详解（下）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RC-NVM技术详解（下）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>mxy &copy; 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&title=《铁电TCAM与少样本学习》 — MXY&pic=http://boltma.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&title=《铁电TCAM与少样本学习》 — MXY&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《铁电TCAM与少样本学习》 — MXY&url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&via=http://boltma.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'QAQ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
