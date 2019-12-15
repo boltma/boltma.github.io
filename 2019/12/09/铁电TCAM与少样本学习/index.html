@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     
 
     
@@ -20,24 +20,24 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content>
+    <meta name="keywords" content="">
     <meta name="description" content="本文是Nature Electronics上倪凯Ferroelectric ternary content-addressable memory for one-shot learning1一文的学习总结与分析，同时也补充了一些技术最近的动向与分析。 作为一篇Nature子刊的文章，这篇工作有两大非常重要的主要工作：阐述了将TCAM应用于少样本学习的方法，以及提出一种每单元两个铁电晶体管的TCA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="铁电TCAM与少样本学习">
-<meta property="og:url" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0&#x2F;index.html">
 <meta property="og:site_name" content="MXY">
 <meta property="og:description" content="本文是Nature Electronics上倪凯Ferroelectric ternary content-addressable memory for one-shot learning1一文的学习总结与分析，同时也补充了一些技术最近的动向与分析。 作为一篇Nature子刊的文章，这篇工作有两大非常重要的主要工作：阐述了将TCAM应用于少样本学习的方法，以及提出一种每单元两个铁电晶体管的TCA">
-<meta property="og:locale" content="zh_cn">
-<meta property="og:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/1.webp">
-<meta property="og:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/2.webp">
-<meta property="og:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/3.png">
-<meta property="og:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/4.webp">
-<meta property="og:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/5.png">
-<meta property="og:updated_time" content="2019-12-10T13:34:31.109Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;1.webp">
+<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;2.webp">
+<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;4.webp">
+<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;5.png">
+<meta property="article:published_time" content="2019-12-09T14:30:36.000Z">
+<meta property="article:modified_time" content="2019-12-10T13:34:31.109Z">
+<meta property="article:author" content="mxy">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="铁电TCAM与少样本学习">
-<meta name="twitter:description" content="本文是Nature Electronics上倪凯Ferroelectric ternary content-addressable memory for one-shot learning1一文的学习总结与分析，同时也补充了一些技术最近的动向与分析。 作为一篇Nature子刊的文章，这篇工作有两大非常重要的主要工作：阐述了将TCAM应用于少样本学习的方法，以及提出一种每单元两个铁电晶体管的TCA">
-<meta name="twitter:image" content="http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/1.webp">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;1.webp">
     
         <link rel="alternate" type="application/atom+xml" title="MXY" href="/atom.xml">
     
@@ -45,15 +45,15 @@
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
-    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- custom head -->
     
 
-</head>
+<meta name="generator" content="Hexo 4.1.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 <body>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide">
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -73,35 +73,35 @@
       <ul class="nav">
         
             <li class="waves-block waves-effect">
-              <a href="/">
+              <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
                 主页
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/archives">
+              <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags">
+              <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
                 Tags
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/categories">
+              <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
                 Categories
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/boltma" target="_blank">
+              <a href="https://github.com/boltma" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
@@ -124,7 +124,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -163,23 +163,24 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关键技术"><span class="post-toc-number">1.</span> <span class="post-toc-text">关键技术</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tcam"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">TCAM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fefet"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">FeFET</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#lsh"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">LSH</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#主要工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">主要工作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#记忆增强神经网络"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">记忆增强神经网络</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fefetcell-tcam"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2FeFET/Cell TCAM</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#后续跟进"><span class="post-toc-number">3.</span> <span class="post-toc-text">后续跟进</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关键技术"><span class="post-toc-number">1.</span> <span class="post-toc-text">关键技术</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#tcam"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">TCAM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fefet"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">FeFET</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#lsh"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">LSH</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#主要工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">主要工作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#记忆增强神经网络"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">记忆增强神经网络</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fefetcell-tcam"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2FeFET&#x2F;Cell TCAM</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#后续跟进"><span class="post-toc-number">3.</span> <span class="post-toc-text">后续跟进</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-铁电TCAM与少样本学习" class="post-article article-type-post fade" itemprop="blogPost">
+<article id="post-铁电TCAM与少样本学习"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">铁电TCAM与少样本学习</h1>
         <div class="post-meta">
-            <time class="post-time" title="2019-12-09 22:30:36" datetime="2019-12-09T14:30:36.000Z" itemprop="datePublished">2019-12-09</time>
+            <time class="post-time" title="2019-12-09 22:30:36" datetime="2019-12-09T14:30:36.000Z"  itemprop="datePublished">2019-12-09</time>
 
             
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
@@ -218,7 +219,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/09/铁电TCAM与少样本学习/1.webp" alt title>
+                    <img src="/.io//1.webp" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -229,7 +230,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/09/铁电TCAM与少样本学习/2.webp" alt title>
+                    <img src="/.io//2.webp" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -237,7 +238,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/09/铁电TCAM与少样本学习/3.png" alt title>
+                    <img src="/.io//3.png" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -246,7 +247,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/09/铁电TCAM与少样本学习/4.webp" alt title>
+                    <img src="/.io//4.webp" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -254,7 +255,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2019/12/09/铁电TCAM与少样本学习/5.png" alt title>
+                    <img src="/.io//5.png" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -292,12 +293,12 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-12-10T13:34:31.109Z" itemprop="dateUpdated">2019-12-10 21:34:31</time>
+    最終更新：<time datetime="2019-12-10T13:34:31.109Z" itemprop="dateUpdated">2019-12-10 21:34:31</time>
 </span><br>
 
 
         
-        <a href="/2019/12/09/铁电TCAM与少样本学习/" target="_blank" rel="external">http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/</a>
+        <a href="/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/" target="_blank" rel="external">http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/</a>
         
     </div>
     
@@ -322,7 +323,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&title=《铁电TCAM与少样本学习》 — MXY&pic=http://boltma.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/&title=《铁电TCAM与少样本学习》 — MXY&pic=http://boltma.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -332,22 +333,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&title=《铁电TCAM与少样本学习》 — MXY&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/&title=《铁电TCAM与少样本学习》 — MXY&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《铁电TCAM与少样本学习》 — MXY&url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&via=http://boltma.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《铁电TCAM与少样本学习》 — MXY&url=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/&via=http://boltma.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -370,7 +371,7 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2019/12/15/铁电晶体管的电荷捕捉效应/" id="post-prev" class="post-nav-link">
+      <a href="/2019/12/15/%E9%93%81%E7%94%B5%E6%99%B6%E4%BD%93%E7%AE%A1%E7%9A%84%E7%94%B5%E8%8D%B7%E6%8D%95%E6%8D%89%E6%95%88%E5%BA%94/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">铁电晶体管的电荷捕捉效应</h4>
       </a>
@@ -379,7 +380,7 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2019/12/04/RC-NVM技术详解（下）/" id="post-next" class="post-nav-link">
+      <a href="/2019/12/04/RC-NVM%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%8B%EF%BC%89/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">RC-NVM技术详解（下）</h4>
       </a>
@@ -420,10 +421,10 @@
     <div class="top">
         
 <p>
-    <span id="busuanzi_container_site_uv" style="display:none">
+    <span id="busuanzi_container_site_uv" style='display:none'>
         站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
-    <span id="busuanzi_container_site_pv" style="display:none">
+    <span id="busuanzi_container_site_pv" style='display:none'>
         站点总访问量：<span id="busuanzi_value_site_pv"></span>
     </span>
 </p>
@@ -433,7 +434,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>このブログの内容物は<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -455,7 +456,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&title=《铁电TCAM与少样本学习》 — MXY&pic=http://boltma.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/&title=《铁电TCAM与少样本学习》 — MXY&pic=http://boltma.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -465,22 +466,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&title=《铁电TCAM与少样本学习》 — MXY&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/&title=《铁电TCAM与少样本学习》 — MXY&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《铁电TCAM与少样本学习》 — MXY&url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/&via=http://boltma.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《铁电TCAM与少样本学习》 — MXY&url=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/&via=http://boltma.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -491,7 +492,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://boltma.github.io/2019/12/09/铁电TCAM与少样本学习/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://boltma.github.io/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/" alt="微信分享二维码">
 </div>
 
 
@@ -547,7 +548,7 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
