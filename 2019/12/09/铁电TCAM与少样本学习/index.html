@@ -28,16 +28,16 @@
 <meta property="og:site_name" content="MXY">
 <meta property="og:description" content="本文是Nature Electronics上倪凯Ferroelectric ternary content-addressable memory for one-shot learning1一文的学习总结与分析，同时也补充了一些技术最近的动向与分析。 作为一篇Nature子刊的文章，这篇工作有两大非常重要的主要工作：阐述了将TCAM应用于少样本学习的方法，以及提出一种每单元两个铁电晶体管的TCA">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;1.webp">
-<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;2.webp">
-<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;3.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;4.webp">
-<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0&#x2F;1.webp">
+<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0&#x2F;2.webp">
+<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0&#x2F;4.webp">
+<meta property="og:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0&#x2F;5.png">
 <meta property="article:published_time" content="2019-12-09T14:30:36.000Z">
-<meta property="article:modified_time" content="2019-12-10T13:34:31.109Z">
+<meta property="article:modified_time" content="2019-12-15T15:26:55.425Z">
 <meta property="article:author" content="mxy">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;.io&#x2F;&#x2F;1.webp">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;boltma.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0&#x2F;1.webp">
     
         <link rel="alternate" type="application/atom+xml" title="MXY" href="/atom.xml">
     
@@ -195,14 +195,7 @@
 <p><strong>三态内容寻址存储器（TCAM, ternary content-addressable memory）</strong>是由<strong>CAM</strong>发展而来的一种存储器。它是一种很有前景的新型存储器，对于CAM，它除了有传统内存的功能（向指定地址写入数据，或从指定地址读出数据）外，还支持一种特殊的功能：输入待查数据，返回该数据被存储的地址。</p>
 <p>这种功能非常强大，因为传统上要从内存中查找一项数据，不但需要一个好的查找算法，而且还会浪费大量时间将数据从内存搬运至CPU。而如果我们在电路层面支持在内存中查找数据，直接返回地址给CPU将非常有利。CAM与TCAM的区别在于：CAM只支持精确匹配，而TCAM则在比较数据时支持第三态（don't care），即对每一个比特，有0（mismatch）、1（match）和x（don't care）三态，因而支持模糊匹配。</p>
 <h2 id="fefet">FeFET</h2>
-<p><strong>铁电晶体管（FeFET，ferroelectric field-effect transistor）</strong>，重要的新型存储器件，不必多做介绍。基本原理在于：在传统MOSFET栅极的电容中加入一层铁电材料（如HfO<sub>2</sub>），使得可以通过铁电材料的正负极化存储数据。正极化时，晶体管阈值电压较低；负极化时，晶体管阈值电压较高。铁电晶体管的优点在于：</p>
-<ul>
-<li><p>非易失存储；</p></li>
-<li>无直流写功耗；</li>
-<li>兼容现有的先进工艺；</li>
-<li>可利用电流电压特性曲线中滞回特性的负电容效应进一步进行低功耗电路设计；</li>
-<li><p>兼具非易失存储与晶体管的控制特性，电路设计灵活。</p></li>
-</ul>
+<p><strong>铁电晶体管（FeFET，ferroelectric field-effect transistor）</strong>，重要的新型存储器件，不必多做介绍。基本原理在于：在传统MOSFET栅极的电容中加入一层铁电材料（如HfO<sub>2</sub>），使得可以通过铁电材料的正负极化存储数据。正极化时，晶体管阈值电压较低；负极化时，晶体管阈值电压较高。铁电晶体管的优点在于： - 非易失存储； - 无直流写功耗； - 兼容现有的先进工艺； - 可利用电流电压特性曲线中滞回特性的负电容效应进一步进行低功耗电路设计； - 兼具非易失存储与晶体管的控制特性，电路设计灵活。</p>
 <p>铁电晶体管的主要缺点是寿命较短，现有的HfO<sub>2</sub>铁电晶体管寿命约为10<sup>5</sup>周期<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>，这主要是受铁电绝缘层的<strong>电荷捕捉效应（charge trapping effect）</strong>限制<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>。</p>
 <p>铁电晶体管的最近动向包括：</p>
 <ul>
@@ -219,7 +212,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/.io//1.webp" alt title>
+                    <img src="/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/1.webp" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -230,7 +223,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/.io//2.webp" alt title>
+                    <img src="/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/2.webp" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -238,7 +231,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/.io//3.png" alt title>
+                    <img src="/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/3.png" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -247,7 +240,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/.io//4.webp" alt title>
+                    <img src="/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/4.webp" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -255,7 +248,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/.io//5.png" alt title>
+                    <img src="/2019/12/09/%E9%93%81%E7%94%B5TCAM%E4%B8%8E%E5%B0%91%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0/5.png" alt title>
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -293,7 +286,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-12-10T13:34:31.109Z" itemprop="dateUpdated">2019-12-10 21:34:31</time>
+    Last updated: <time datetime="2019-12-15T15:26:55.425Z" itemprop="dateUpdated">2019-12-15 23:26:55</time>
 </span><br>
 
 
@@ -572,9 +565,24 @@ MathJax.Hub.Queue(function() {
         }
     });
 })();
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
